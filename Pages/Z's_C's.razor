@@ -1,0 +1,309 @@
+﻿@page "/"
+@using Microsoft.AspNetCore.Components.Web
+@using Z_C.ClassLibrary1
+<PageTitle> Крестики и Нолики </PageTitle>
+<body>
+    <div class="text-center">
+        <button @onclick="StartGame">@textNewGame</button>
+    </div>
+    <div class="text-center" style="color:red">
+            <p> <font color="red"> @winstext </font> </p>
+        <div class="container-buttons">
+            <button @onclick="ChangeButtonImage1"> <img src="@imageCell1" width="100" height="100" /></button> <!-- нажатие на кнопку вызывает ChangeButtonImage1-->
+            <button @onclick="ChangeButtonImage2"> <img src="@imageCell2" width="100" height="100" /></button>
+            <button @onclick="ChangeButtonImage3"> <img src="@imageCell3" width="100" height="100" /></button>
+        </div>
+        <div class="container-buttons">
+            <button @onclick="ChangeButtonImage4"> <img src="@imageCell4" width="100" height="100" /></button>
+            <button @onclick="ChangeButtonImage5"> <img src="@imageCell5" width="100" height="100" /></button>
+            <button @onclick="ChangeButtonImage6"> <img src="@imageCell6" width="100" height="100" /></button>
+        </div>
+        <div class="container-buttons">
+            <button @onclick="ChangeButtonImage7"> <img src="@imageCell7" width="100" height="100" /></button>
+            <button @onclick="ChangeButtonImage8"> <img src="@imageCell8" width="100" height="100" /></button>
+            <button @onclick="ChangeButtonImage9"> <img src="@imageCell9" width="100" height="100" /></button>
+        </div>
+    </div>
+</body>
+@code {
+    private bool checkMove = true;
+    private string? imageCell1 = $"images/Background.png";
+    private string? imageCell2 = $"images/Background.png";
+    private string? imageCell3 = $"images/Background.png";
+    private string? imageCell4 = $"images/Background.png";
+    private string? imageCell5 = $"images/Background.png";
+    private string? imageCell6 = $"images/Background.png";
+    private string? imageCell7 = $"images/Background.png";
+    private string? imageCell8 = $"images/Background.png";
+    private string? imageCell9 = $"images/Background.png";
+    private string? winstext = "";
+    private string? textNewGame = "Begin new Game";
+    int[,] matrix = new int[3, 3];
+    private int move = 2;
+
+    private void StartGame()
+    {
+        textNewGame = "Begin new Game";
+        imageCell1 = $"images/Background.png";
+        imageCell2 = $"images/Background.png";
+        imageCell3 = $"images/Background.png";
+        imageCell4 = $"images/Background.png";
+        imageCell5 = $"images/Background.png";
+        imageCell6 = $"images/Background.png";
+        imageCell7 = $"images/Background.png";
+        imageCell8 = $"images/Background.png";
+        imageCell9 = $"images/Background.png";
+        move = 2;
+        checkMove = true;
+        winstext = "";
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                matrix[i, j] = 0;
+            }
+        }
+    }
+    private void ChangeButtonImage1()
+    {
+        if (winstext == "") // не трогаю
+        {
+            if (checkMove)
+            {
+                if (imageCell1 == $"images/Background.png")
+                {
+                    imageCell1 = $"images/Krest.png";
+                    move = 1;
+                    matrix[0, 0] = 4;
+                    winstext = Class1.Checkwin(matrix);
+                    checkMove = false;
+                }
+            }
+            else
+                if (imageCell1 == $"images/Background.png")
+            {
+                imageCell1 = $"images/Nolik.png";
+                move++;
+                matrix[0, 0] = 1;
+                winstext = Class1.Checkwin(matrix);
+                checkMove = true;
+            }
+        }
+    }
+    private void ChangeButtonImage2()
+    {
+        if (winstext == "")
+        {
+            if (checkMove)
+            {
+                if (imageCell2 == $"images/Background.png")
+                {
+                    imageCell2 = $"images/Krest.png";
+                    move++;
+                    matrix[0, 1] = 4;
+                    winstext = Class1.Checkwin(matrix);
+                    checkMove = false;
+                }
+            }
+            else
+            if (imageCell2 == $"images/Background.png")
+            {
+                imageCell2 = $"images/Nolik.png";
+                move = 1;
+                matrix[0, 1] = 1;
+                winstext = Class1.Checkwin(matrix);
+                checkMove = true;
+            }
+        }
+    }
+    private void ChangeButtonImage3()
+    {
+        if (winstext == "")
+        {
+            if (checkMove)
+            {
+                if (imageCell3 == $"images/Background.png")
+                {
+                    imageCell3 = $"images/Krest.png";
+                    move = 1;
+                    matrix[0, 2] = 4;
+                    winstext = Class1.Checkwin(matrix);
+                    checkMove = false;
+                }
+            }
+            else
+            if (imageCell3 == $"images/Background.png")
+            {
+                imageCell3 = $"images/Nolik.png";
+                move++;
+                matrix[0, 2] = 1;
+                winstext = Class1.Checkwin(matrix);
+                checkMove = true;
+            }
+        }
+
+    }
+    private void ChangeButtonImage4()
+    {
+        if (winstext == "")
+        {
+            if (checkMove)
+            {
+                if (imageCell4 == $"images/Background.png")
+                {
+                    imageCell4 = $"images/Krest.png";
+                    move = 1;
+                    matrix[1, 0] = 4;
+                    winstext = Class1.Checkwin(matrix);
+                    checkMove = false;
+                }
+            }
+            else
+            if (imageCell4 == $"images/Background.png")
+            {
+                imageCell4 = $"images/Nolik.png";
+                move++;
+                matrix[1, 0] = 1;
+                winstext = Class1.Checkwin(matrix);
+                checkMove = true;
+            }
+        }
+
+    }
+    private void ChangeButtonImage5()
+    {
+        if (winstext == "")
+        {
+            if (checkMove)
+            {
+                if (imageCell5 == $"images/Background.png")
+                {
+                    imageCell5 = $"images/Krest.png";
+                    move = 1;
+                    matrix[1, 1] = 4;
+                    winstext = Class1.Checkwin(matrix);
+                    checkMove = false;
+                }
+            }
+            else
+            if (imageCell5 == $"images/Background.png")
+            {
+                imageCell5 = $"images/Nolik.png";
+                move++;
+                matrix[1, 1] = 1;
+                winstext = Class1.Checkwin(matrix);
+                checkMove = true;
+            }
+        }
+
+    }
+    private void ChangeButtonImage6()
+    {
+        if (winstext == "")
+        {
+            if (checkMove)
+            {
+                if (imageCell6 == $"images/Background.png")
+                {
+                    imageCell6 = $"images/Krest.png";
+                    move = 1;
+                    matrix[1, 2] = 4;
+                    winstext = Class1.Checkwin(matrix);
+                    checkMove = false;
+                }
+            }
+            else
+            if (imageCell6 == $"images/Background.png")
+            {
+                imageCell6 = $"images/Nolik.png";
+                move++;
+                matrix[1, 2] = 1;
+                winstext = Class1.Checkwin(matrix);
+                checkMove = true;
+            }
+        }
+
+    }
+    private void ChangeButtonImage7()
+    {
+        if (winstext == "")
+        {
+            if (checkMove)
+            {
+                if (imageCell7 == $"images/Background.png")
+                {
+                    imageCell7 = $"images/Krest.png";
+                    move = 1;
+                    matrix[2, 0] = 4;
+                    winstext = Class1.Checkwin(matrix);
+                    checkMove = false;
+                }
+            }
+            else
+            if (imageCell7 == $"images/Background.png")
+            {
+                imageCell7 = $"images/Nolik.png";
+                move++;
+                matrix[2, 0] = 1;
+                winstext = Class1.Checkwin(matrix);
+                checkMove = true;
+            }
+        }
+
+    }
+    private void ChangeButtonImage8()
+    {
+        if (winstext == "")
+        {
+            if (checkMove)
+            {
+                if (imageCell8 == $"images/Background.png")
+                {
+                    imageCell8 = $"images/Krest.png";
+                    move = 1;
+                    matrix[2, 1] = 4;
+                    winstext = Class1.Checkwin(matrix);
+                    checkMove = false;
+                }
+            }
+            else
+            if (imageCell8 == $"images/Background.png")
+            {
+                imageCell8 = $"images/Nolik.png";
+                move++;
+                matrix[2, 1] = 1;
+                winstext = Class1.Checkwin(matrix);
+                checkMove = true;
+            }
+        }
+
+    }
+    private void ChangeButtonImage9()
+    {
+        if (winstext == "")
+        {
+            if (checkMove)
+            {
+                if (imageCell9 == $"images/Background.png")
+                {
+                    imageCell9 = $"images/Krest.png";
+                    move = 1;
+                    matrix[2, 2] = 4;
+                    winstext = Class1.Checkwin(matrix);
+                    checkMove = false;
+                }
+            }
+            else
+            if (imageCell9 == $"images/Background.png")
+            {
+                imageCell9 = $"images/Nolik.png";
+                move++;
+                matrix[2, 2] = 1;
+                winstext = Class1.Checkwin(matrix);
+                checkMove = true;
+            }
+        }
+
+    }
+
+}
